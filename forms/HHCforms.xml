@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:orx="http://openrosa.org/jr/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:vellum="http://commcarehq.org/xforms/vellum">
+	<h:head>
+		<h:title>Survey HHC</h:title>
+		<model>
+			<instance>
+				<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms" xmlns="http://openrosa.org/formdesigner/3D509758-B74E-4C6B-8E1E-F15776334E1A" uiVersion="1" version="1" name="Survey HHC">
+					<facility />
+					<departemnt />
+					<period_number />
+					<date />
+					<start_time />
+					<session_number />
+					<opportunity jr:template="">
+						<prof_category />
+						<indication />
+						<hand_hygiene_action />
+						<gloves />
+					</opportunity>
+					<end_time />
+					<session_duration_in_minutes />
+					<total_opportunities />
+					<compliance />
+					<CompliancePercentage />
+					<Session_Duration_calc />
+				</data>
+			</instance>
+			<bind vellum:nodeset="#form/facility" nodeset="/data/facility" />
+			<bind vellum:nodeset="#form/departemnt" nodeset="/data/departemnt" />
+			<bind vellum:nodeset="#form/period_number" nodeset="/data/period_number" type="xsd:int" />
+			<bind vellum:nodeset="#form/date" nodeset="/data/date" type="xsd:date" />
+			<bind vellum:nodeset="#form/start_time" nodeset="/data/start_time" type="xsd:time" />
+			<bind vellum:nodeset="#form/session_number" nodeset="/data/session_number" type="xsd:int" />
+			<bind vellum:nodeset="#form/opportunity" nodeset="/data/opportunity" />
+			<bind vellum:nodeset="#form/opportunity/prof_category" nodeset="/data/opportunity/prof_category" />
+			<bind vellum:nodeset="#form/opportunity/indication" nodeset="/data/opportunity/indication" />
+			<bind vellum:nodeset="#form/opportunity/hand_hygiene_action" nodeset="/data/opportunity/hand_hygiene_action" />
+			<bind vellum:nodeset="#form/opportunity/gloves" nodeset="/data/opportunity/gloves" />
+			<bind vellum:nodeset="#form/end_time" nodeset="/data/end_time" type="xsd:time" />
+			<bind vellum:nodeset="#form/session_duration_in_minutes" nodeset="/data/session_duration_in_minutes" type="xsd:int" />
+			<bind vellum:nodeset="#form/total_opportunities" nodeset="/data/total_opportunities" vellum:calculate="count(#form/opportunity)" calculate="count(/data/opportunity)" />
+			<bind vellum:nodeset="#form/compliance" nodeset="/data/compliance" calculate="count(/data/opportunity[hand_hygiene_action != 'missed'])" />
+			<bind vellum:nodeset="#form/CompliancePercentage" nodeset="/data/CompliancePercentage" vellum:calculate="(#form/compliance div #form/total_opportunities) * 100" calculate="(/data/compliance div /data/total_opportunities) * 100" />
+			<bind vellum:nodeset="#form/Session_Duration_calc" nodeset="/data/Session_Duration_calc" vellum:calculate="#form/start_time - #form/end_time" calculate="/data/start_time - /data/end_time" />
+			<setvalue event="xforms-ready" vellum:ref="#form/facility" ref="/data/facility" value="'DH'" />
+			<setvalue event="xforms-ready" vellum:ref="#form/start_time" ref="/data/start_time" value="now()" />
+			<setvalue event="xforms-ready" vellum:ref="#form/end_time" ref="/data/end_time" value="now()" />
+			<itext>
+				<translation lang="en" default="">
+					<text id="facility-label">
+						<value>Facility</value>
+					</text>
+					<text id="facility-DH-label">
+						<value>Dhulikhel Hospital</value>
+					</text>
+					<text id="departemnt-label">
+						<value>Departemnt </value>
+					</text>
+					<text id="departemnt-aicu-label">
+						<value>AICU</value>
+					</text>
+					<text id="departemnt-cicu-label">
+						<value>CICU</value>
+					</text>
+					<text id="departemnt-hdu-label">
+						<value>HDU</value>
+					</text>
+					<text id="departemnt-nicu-label">
+						<value>NICU</value>
+					</text>
+					<text id="departemnt-picu-label">
+						<value>PICU</value>
+					</text>
+					<text id="period_number-label">
+						<value>Period Number</value>
+					</text>
+					<text id="date-label">
+						<value>Date</value>
+					</text>
+					<text id="start_time-label">
+						<value>Start Time</value>
+					</text>
+					<text id="session_number-label">
+						<value>Session Number </value>
+					</text>
+					<text id="opportunity-label">
+						<value>Opportunity</value>
+					</text>
+					<text id="opportunity/prof_category-label">
+						<value>Prof. Category</value>
+					</text>
+					<text id="opportunity/prof_category-nurse-label">
+						<value>Nurse </value>
+					</text>
+					<text id="opportunity/prof_category-doctor-label">
+						<value>Doctor</value>
+					</text>
+					<text id="opportunity/prof_category-physiotherapist-label">
+						<value>Physiotherapist</value>
+					</text>
+					<text id="opportunity/prof_category-others-label">
+						<value>Others</value>
+					</text>
+					<text id="opportunity/indication-label">
+						<value>Indication</value>
+					</text>
+					<text id="opportunity/indication-before_patient_care-label">
+						<value>Before patient care</value>
+					</text>
+					<text id="opportunity/indication-before_aseptic_procedure-label">
+						<value>before aseptic procedure</value>
+					</text>
+					<text id="opportunity/indication-after_body_fluid_exposure_risk-label">
+						<value>after body fluid exposure risk</value>
+					</text>
+					<text id="opportunity/indication-after_patient_care-label">
+						<value>after patient care </value>
+					</text>
+					<text id="opportunity/indication-after_patient_surrounding-label">
+						<value>after patient surrounding </value>
+					</text>
+					<text id="opportunity/hand_hygiene_action-label">
+						<value>Hand hygiene action</value>
+					</text>
+					<text id="opportunity/hand_hygiene_action-hand_wash-label">
+						<value>Hand wash</value>
+					</text>
+					<text id="opportunity/hand_hygiene_action-hand_rub-label">
+						<value>Hand rub</value>
+					</text>
+					<text id="opportunity/hand_hygiene_action-missed-label">
+						<value>Missed</value>
+					</text>
+					<text id="opportunity/gloves-label">
+						<value>Gloves</value>
+					</text>
+					<text id="opportunity/gloves-yes-label">
+						<value>Yes</value>
+					</text>
+					<text id="opportunity/gloves-no-label">
+						<value>No</value>
+					</text>
+					<text id="end_time-label">
+						<value>End time </value>
+					</text>
+					<text id="session_duration_in_minutes-label">
+						<value>Session duration (in minutes)</value>
+					</text>
+				</translation>
+			</itext>
+		</model>
+	</h:head>
+	<h:body>
+		<select1 vellum:ref="#form/facility" ref="/data/facility">
+			<label ref="jr:itext('facility-label')" />
+			<item>
+				<label ref="jr:itext('facility-DH-label')" />
+				<value>DH</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/departemnt" ref="/data/departemnt">
+			<label ref="jr:itext('departemnt-label')" />
+			<item>
+				<label ref="jr:itext('departemnt-aicu-label')" />
+				<value>aicu</value>
+			</item>
+			<item>
+				<label ref="jr:itext('departemnt-cicu-label')" />
+				<value>cicu</value>
+			</item>
+			<item>
+				<label ref="jr:itext('departemnt-hdu-label')" />
+				<value>hdu</value>
+			</item>
+			<item>
+				<label ref="jr:itext('departemnt-nicu-label')" />
+				<value>nicu</value>
+			</item>
+			<item>
+				<label ref="jr:itext('departemnt-picu-label')" />
+				<value>picu</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/period_number" ref="/data/period_number">
+			<label ref="jr:itext('period_number-label')" />
+		</input>
+		<input vellum:ref="#form/date" ref="/data/date">
+			<label ref="jr:itext('date-label')" />
+		</input>
+		<input vellum:ref="#form/start_time" ref="/data/start_time">
+			<label ref="jr:itext('start_time-label')" />
+		</input>
+		<input vellum:ref="#form/session_number" ref="/data/session_number">
+			<label ref="jr:itext('session_number-label')" />
+		</input>
+		<group>
+			<label ref="jr:itext('opportunity-label')" />
+			<repeat vellum:nodeset="#form/opportunity" nodeset="/data/opportunity">
+				<select1 vellum:ref="#form/opportunity/prof_category" ref="/data/opportunity/prof_category">
+					<label ref="jr:itext('opportunity/prof_category-label')" />
+					<item>
+						<label ref="jr:itext('opportunity/prof_category-nurse-label')" />
+						<value>nurse</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/prof_category-doctor-label')" />
+						<value>doctor</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/prof_category-physiotherapist-label')" />
+						<value>physiotherapist</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/prof_category-others-label')" />
+						<value>others</value>
+					</item>
+				</select1>
+				<select1 vellum:ref="#form/opportunity/indication" ref="/data/opportunity/indication">
+					<label ref="jr:itext('opportunity/indication-label')" />
+					<item>
+						<label ref="jr:itext('opportunity/indication-before_patient_care-label')" />
+						<value>before_patient_care</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/indication-before_aseptic_procedure-label')" />
+						<value>before_aseptic_procedure</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/indication-after_body_fluid_exposure_risk-label')" />
+						<value>after_body_fluid_exposure_risk</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/indication-after_patient_care-label')" />
+						<value>after_patient_care</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/indication-after_patient_surrounding-label')" />
+						<value>after_patient_surrounding</value>
+					</item>
+				</select1>
+				<select1 vellum:ref="#form/opportunity/hand_hygiene_action" ref="/data/opportunity/hand_hygiene_action">
+					<label ref="jr:itext('opportunity/hand_hygiene_action-label')" />
+					<item>
+						<label ref="jr:itext('opportunity/hand_hygiene_action-hand_wash-label')" />
+						<value>hand_wash</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/hand_hygiene_action-hand_rub-label')" />
+						<value>hand_rub</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/hand_hygiene_action-missed-label')" />
+						<value>missed</value>
+					</item>
+				</select1>
+				<select1 vellum:ref="#form/opportunity/gloves" ref="/data/opportunity/gloves">
+					<label ref="jr:itext('opportunity/gloves-label')" />
+					<item>
+						<label ref="jr:itext('opportunity/gloves-yes-label')" />
+						<value>yes</value>
+					</item>
+					<item>
+						<label ref="jr:itext('opportunity/gloves-no-label')" />
+						<value>no</value>
+					</item>
+				</select1>
+			</repeat>
+		</group>
+		<input vellum:ref="#form/end_time" ref="/data/end_time">
+			<label ref="jr:itext('end_time-label')" />
+		</input>
+		<input vellum:ref="#form/session_duration_in_minutes" ref="/data/session_duration_in_minutes">
+			<label ref="jr:itext('session_duration_in_minutes-label')" />
+		</input>
+	</h:body>
+</h:html>
