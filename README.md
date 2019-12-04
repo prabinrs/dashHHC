@@ -19,6 +19,11 @@ shiny::runGitHub("dashHHC", "prabinrs")
 
 ## ODK Data collection forms(app):
 
+Copy the project from Commcare exchange, link; 
+https://www.commcarehq.org/exchange/927c4e0f75cc353b0db58a92e/info/
+
+or check out our wiki for more details 
+https://github.com/prabinrs/dashHHC/wiki/Forms-for-Data-Collection
 
 ## Demo 
 The demo of the app is avaliable at https://prabinrs.shinyapps.io/dashHHC/ , 
